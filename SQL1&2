@@ -1,3 +1,36 @@
+# 문제1
 select game_account_id, game_actor_id, serverno 
 from users u 
 where u.`date` > 2023-01-01;
+
+# 문제2
+select `date` , ip_addr , `exp` , zone_id 
+from users u 
+where `level`>10
+	and serverno!=1
+	and etc_str2 in('레벨업 패키지', '시즌패스')
+	and etc_str1 = '상점에서 구매'
+order by `date` desc ;
+
+# 문제3
+select game_actor_id, `level`, 
+	case when `level`between 1 and 10 then '1~10Lv'
+		 when `level`between 11 and 20 then '11~20Lv'
+		 when `level`between 21 and 30 then '21~30Lv'
+		 when `level`between 31 and 40 then '31~40Lv'
+		 when `level`between 41 and 50 then '41~50Lv'
+		 when `level`between 51 and 60 then '51~60Lv'
+		 when `level`between 61 and 70 then '61~70Lv'
+		 when `level`between 71 and 80 then '71~80Lv'
+		 when `level`between 81 and 90 then '81~90Lv'
+		 else '91~100Lv' end as `levelgroup`
+	,`date`	 
+from users u 
+order by `date` desc;
+
+# 문제4
+select date_format(`date`, '%y-%m') as m
+	, game_account_id, game_actor_id
+from users u 
+order by m, game_actor_id desc;
+
