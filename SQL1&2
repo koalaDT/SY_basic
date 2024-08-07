@@ -1,0 +1,3 @@
+select game_account_id, game_actor_id, serverno 
+from users u 
+where u.`date` > 2023-01-01;
